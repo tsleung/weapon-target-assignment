@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Helldivers Weapon-Target Assignment Simulation</title>
+    <!-- RxJS -->
+    <script src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <!-- SVG container -->
+    <svg width="800" height="600" style="border:1px solid black;"></svg>
+    
+    <script>
+      // Place the JavaScript code here
+      // Runtime configuration parameters
+      const svg = d3.select("svg");
+      const width = +svg.attr("width");
+      const height = +svg.attr("height");
+      
+
+    </script>
+    <button onclick="api.addAgent()">Add agent</button>
+    <button onclick="api.addEnemy()">Add enemy</button>
+    <script>
+      // new Array(4).fill(0).forEach(api.addAgent)
+      // new Array(40).fill(0).forEach(api.addEnemy)
+    </script>
+</body>
+</html>
