@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Helldivers Weapon-Target Assignment Simulation</title>
-    <!-- RxJS -->
-    <script src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
-    <!-- D3.js -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="index.js"></script>
+  <title>Helldivers Weapon-Target Assignment Simulation</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"></script>
+  <script src="index.js"></script>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+  </style>
 </head>
 <body>
-    <!-- SVG container -->
-    <svg width="800" height="600" style="border:1px solid black;"></svg>
-    
-    <script>
-      // Place the JavaScript code here
-      // Runtime configuration parameters
-      const svg = d3.select("svg");
-      const width = +svg.attr("width");
-      const height = +svg.attr("height");
-      
 
-    </script>
-    <button onclick="api.addAgent()">Add agent</button>
-    <button onclick="api.addEnemy()">Add enemy</button>
-    <script>
-      // new Array(4).fill(0).forEach(api.addAgent)
-      // new Array(40).fill(0).forEach(api.addEnemy)
-    </script>
+  <div>
+    <button id="addAgentButton">Add Agent</button>
+    <button id="addEnemyButton">Add Enemy</button>
+    <button id="toggleEnemyTargetingButton">Toggle Enemy Targeting</button>
+    <button id="toggleAgentTargetingButton">Toggle Agent Targeting</button>
+  </div>
+
+  <svg id="simulationSvg" width="800" height="600"></svg>
+
+  <script>
+    // ... (ECS code from previous responses) ...
+
+    // Update the simulation
+    const simulationUpdates = rxjs.interval(1000);
+    simulationUpdates.subscribe(() => {
+      entityComponentSystem.update();
+    });
+
+    // Event listeners for buttons
+    document.getElementById("addAgentButton").addEventListener("click", api.addAgent);
+    document.getElementById("addEnemyButton").addEventListener("click", api.addEnemy);
+    document.getElementById("toggleEnemyTargetingButton").addEventListener("click", api.toggleEnemyTargeting);
+    document.getElementById("toggleAgentTargetingButton").addEventListener("click", api.toggleAgentTargeting);
+
+    // Initialize the SVG
+    const svg = d3.select("#simulationSvg");
+    const renderingSystem = new RenderingSystem(svg);
+    entityComponentSystem.addSystem(renderingSystem);
+
+    
+  </script>
+  
 </body>
 </html>
